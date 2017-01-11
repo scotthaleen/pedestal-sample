@@ -45,7 +45,7 @@ user=> (test)
 ```
 lein uberjar
 
-$ java -cp target/resample-web-*-standalone.jar -Dhttp.port=8080 sample.app
+$ java -cp target/sample-web-*-standalone.jar -Dhttp.port=8080 sample.app
 
 $ curl localhost:8080/ruok
 ```
