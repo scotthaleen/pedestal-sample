@@ -1,12 +1,5 @@
 # Pedestal Sample Project
 
-
-Documentation: 
-
-https://12factor.net/ <br/>
-https://github.com/pedestal/pedestal <br/>
-https://github.com/stuartsierra/component <br/>
-
 ### Project Setup
 
 ```
@@ -16,12 +9,7 @@ brew install leiningen
 Create a **profiles.clj** in the root of the project and add custom overrides 
 
 ```clojure
-{ 
-  :profiles/dev {
-                 :jvm-opts ["-Dhttp.port=8080"
-                          
-                  ]
- }}
+{ :profiles/dev { :jvm-opts ["-Dhttp.port=8080"] }}
 ```
 
 ### Quick Start
@@ -83,3 +71,11 @@ ok%
 
 $ curl localhost:4000/store/get/foo1
 {:foo1 "42"}%
+```
+
+
+Documentation: 
+
+[12factor.net](https://12factor.net) <br/>
+[Pedestal](https://github.com/pedestal/pedestal) <br/>
+[Component](https://github.com/stuartsierra/component) <br/>
