@@ -1,5 +1,7 @@
 # Pedestal Sample Project
 
+[![Build Status](https://travis-ci.org/scotthaleen/pedestal-sample.svg?branch=master)](https://travis-ci.org/scotthaleen/pedestal-sample)
+
 ### Project Setup
 
 ```
@@ -46,7 +48,6 @@ lein uberjar
 $ java -cp target/resample-web-*-standalone.jar -Dhttp.port=8080 sample.app
 
 $ curl localhost:8080/ruok
-
 ```
 
 
