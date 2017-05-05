@@ -2,10 +2,16 @@
   :description " Sample Pedestal Web Server "
   :dependencies [
                  [org.clojure/clojure "1.8.0"]
+
+                 
+                 ;;[org.clojure/tools.cli "0.3.5"]
                  
                  ;; pedestal
                  [io.pedestal/pedestal.service "0.5.1"]
                  [io.pedestal/pedestal.jetty "0.5.1"]
+                 [pedestal-api "0.3.1"]
+                 [metosin/ring-swagger "0.23.0"]
+
 
                  ;;enviorment
                  [environ "1.1.0"]

@@ -5,7 +5,8 @@
    [io.pedestal.test :refer :all]
    [sample.routes :refer [build-routes]]
    [sample.component.store :as store]
-   [io.pedestal.http :as http]))
+   [io.pedestal.http :as http]
+   [cheshire.core :as json]))
 
 (set! *warn-on-reflection* true)
 
@@ -44,7 +45,7 @@
            (response-for  :get "/ruok")
            :headers
            (get "Content-Type"))
-       "text/html")))
+       "text/plain")))
 
 
 (deftest put-store
@@ -63,12 +64,30 @@
            ((juxt :status :body)
             (response-for (test-service store)
                           :get "/store/get/foo"
-                          ))))
-    
-    )
+                          ))))))
 
 
-  )
+;; todo: how to pass query-params to test
+#_(deftest sample-schema
+  (let [[status1 body1] ((juxt :status :body)
+                         (response-for (test-service (mock-store))
+                                       :post "/sample"
+                                       :headers {"Content-Type" "application/json"}
+                                       :body "{\"name\": \"test\", \"id\": 7}"))
+        [status2 body2] ((juxt :status :body)
+                         (response-for (test-service (mock-store))
+                                       :post "/sample"
+                                       :headers {"Content-Type" "application/json"}
+                                       :query-params {:opt "zzz"}
+                                       :body "{\"name\": \"test\", \"id\": 8}"))
+        hash1 (:hash (json/parse-string body1 true))
+        hash2 (:hash (json/parse-string body2 true))]
+    (is (= 200 status1))
+    (is (= "7-test-abc" hash1))
+    (is (= 200 status2))
+    (is (= "8-test-zzz" hash2))))
+
+
 
 #_(deftest echo-route
   (is (= (:body (response-for (test-service) :post "/echo"
